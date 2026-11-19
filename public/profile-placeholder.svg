@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="40" x2="540" y2="590" gradientUnits="userSpaceOnUse"><stop stop-color="#102a43"/><stop offset="1" stop-color="#07111f"/></linearGradient>
+    <linearGradient id="person" x1="180" y1="180" x2="430" y2="550" gradientUnits="userSpaceOnUse"><stop stop-color="#7dd3fc"/><stop offset="1" stop-color="#2563eb"/></linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(0 300 -300 0 300 300)" gradientUnits="userSpaceOnUse"><stop stop-color="#0ea5e9" stop-opacity=".3"/><stop offset="1" stop-color="#0ea5e9" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="600" height="600" rx="40" fill="url(#bg)"/><rect width="600" height="600" rx="40" fill="url(#glow)"/>
+  <circle cx="300" cy="300" r="218" stroke="#38bdf8" stroke-opacity=".22" stroke-width="2" stroke-dasharray="5 12"/>
+  <circle cx="300" cy="230" r="92" fill="url(#person)" fill-opacity=".9"/>
+  <path d="M126 550c13-111 84-171 174-171s161 60 174 171" fill="url(#person)" fill-opacity=".9"/>
+  <path d="M95 95h70M95 95v70M505 95h-70M505 95v70M95 505h70M95 505v-70M505 505h-70M505 505v-70" stroke="#7dd3fc" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+  <text x="300" y="575" fill="#bae6fd" fill-opacity=".75" font-family="Arial,sans-serif" font-size="13" letter-spacing="4" text-anchor="middle">ADD YOUR PROFILE PHOTO</text>
+</svg>
