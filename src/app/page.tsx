@@ -201,7 +201,7 @@ export default function Home() {
           >
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/[.07] px-4 py-2 text-[10px] font-semibold uppercase tracking-[.2em] text-cyan-200">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-300" />
-              IT Infrastructure Portfolio
+              I'm here
             </div>
 
             <p className="text-sm font-medium tracking-wide text-slate-400">
