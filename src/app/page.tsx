@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -10,13 +11,10 @@ import {
   Download,
   Mail,
   MapPin,
-  Network,
   ShieldCheck,
-  Terminal,
   Phone,
   Linkedin,
   Send,
-  Server,
   Sparkles,
   X,
 } from "lucide-react";
@@ -24,26 +22,38 @@ import {
 import Navbar from "@/components/Navbar";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import SkillsShowcase from "@/components/SkillsShowcase";
+
 import { profile } from "@/data/portfolioData";
 
 // Load 3D components in the browser only
-const NetworkScene = dynamic(() => import("@/components/NetworkScene"), {
-  ssr: false,
-  loading: () => <div className="absolute inset-0 -z-0 hero-grid" />,
-});
+const NetworkScene = dynamic(
+  () => import("@/components/NetworkScene"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="absolute inset-0 -z-0 hero-grid" />
+    ),
+  }
+);
 
-const ObjProfile = dynamic(() => import("@/components/ObjProfile"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-full w-full animate-pulse rounded-2xl bg-white/5" />
-  ),
-});
+const ObjProfile = dynamic(
+  () => import("@/components/ObjProfile"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-full w-full animate-pulse rounded-2xl bg-white/5" />
+    ),
+  }
+);
 
+// Contact information comes from portfolioData.ts
 const contactItems = [
   {
     label: "Email",
     value: profile.email,
-    href: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`,
+    href: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      profile.email
+    )}`,
     icon: Mail,
     external: true,
   },
@@ -73,7 +83,12 @@ const contactItems = [
 export default function Home() {
   const [show3DPopup, setShow3DPopup] = useState(true);
 
-  // Close popup and go to main introduction
+  // Separate the first name from the remaining name for styling
+  const nameParts = profile.name.trim().split(" ");
+  const firstName = nameParts[0];
+  const remainingName = nameParts.slice(1).join(" ");
+
+  // Close popup and go to About Me section
   const handleAboutMe = () => {
     setShow3DPopup(false);
 
@@ -121,12 +136,12 @@ export default function Home() {
               </span>
 
               <h2 className="mt-5 text-2xl font-semibold text-white sm:text-4xl">
-                Meet <span className="gradient-text">Yanndara</span>
+                Meet{" "}
+                <span className="gradient-text">{profile.name}</span>
               </h2>
 
               <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-400">
-                IT Support Specialist and aspiring Network & System
-                Administrator.
+                {profile.roles}
               </p>
             </div>
 
@@ -172,9 +187,11 @@ export default function Home() {
         className="relative flex min-h-screen items-center px-5 pb-20 pt-32 sm:px-8"
       >
         <div className="hero-glow" />
+
         <NetworkScene />
 
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
+
           {/* LEFT SIDE: ABOUT ME INFORMATION */}
 
           <motion.div
@@ -192,63 +209,36 @@ export default function Home() {
             </p>
 
             <h1 className="mt-4 text-4xl font-bold leading-tight text-white sm:text-6xl">
-              Chhun <span className="gradient-text">Yanndara</span>
+              {firstName}{" "}
+              <span className="gradient-text">{remainingName}</span>
               <span className="text-cyan-300">.</span>
             </h1>
 
+            {/* Job title from portfolioData.ts */}
             <h2 className="mt-5 text-lg font-medium leading-relaxed text-cyan-300 sm:text-xl">
-              IT Support Specialist
-              <span className="text-slate-500"> | </span>
-              Junior Network & System Administrator
+              {profile.roles}
             </h2>
 
+            {/* About Me summary from portfolioData.ts */}
             <p className="mt-7 text-sm leading-8 text-slate-400 sm:text-base">
-              I graduated from SETEC Institute with a degree in Management
-              Information Systems (MIS). I have practical experience in IT
-              helpdesk support, troubleshooting, hardware, software, and basic
-              networking.
+              {profile.summary}
             </p>
-
-            <p className="mt-4 text-sm leading-8 text-slate-400 sm:text-base">
-              Through my experience at NagaWorld and ABA Bank, I developed my
-              technical support, communication, and problem-solving skills. I
-              enjoy learning new technologies and improving my knowledge of IT
-              infrastructure.
-            </p>
-
-            <p className="mt-4 text-sm leading-8 text-slate-400 sm:text-base">
-              My career goal is to become a System Administrator, specializing
-              in networking, servers, and IT infrastructure.
-            </p>
-
-            {/* Focus areas */}
-            {/* <div className="mt-7 grid grid-cols-2 gap-3">
-              {[
-                "IT Support",
-                "Networking",
-                "System Administration",
-                "IT Infrastructure",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-xl border border-white/10 bg-white/[0.03] p-4 text-xs text-slate-300 transition hover:border-cyan-400/40 hover:bg-cyan-400/[.05]"
-                >
-                  <span className="mr-2 text-cyan-400">
-                    ✦
-                  </span>
-                  {item}
-                </div>
-              ))}
-            </div> */}
 
             {/* Action buttons */}
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href={profile.cvPath} download className="primary-button">
+              <a
+                href={profile.cvPath}
+                download
+                className="primary-button"
+              >
                 <Download size={16} />
                 Download CV
               </a>
 
-              <a href="#contact" className="secondary-button">
+              <a
+                href="#contact"
+                className="secondary-button"
+              >
                 <Mail size={16} />
                 Contact Me
               </a>
@@ -268,7 +258,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* RIGHT SIDE: YOUR 3D OBJ PROFILE */}
+          {/* RIGHT SIDE: YOUR 3D PROFILE */}
 
           <motion.div
             initial={{ opacity: 0, x: 30, scale: 0.95 }}
@@ -295,7 +285,9 @@ export default function Home() {
               </div>
 
               <div className="border-t border-white/10 px-5 py-4 text-center">
-                <h3 className="font-semibold text-white">CHHUN YANNDARA</h3>
+                <h3 className="font-semibold text-white">
+                  {profile.name.toUpperCase()}
+                </h3>
 
                 <p className="mt-1 text-xs text-cyan-300">
                   Drag the model to rotate
@@ -310,17 +302,21 @@ export default function Home() {
           EXPERIENCE
       ====================================== */}
 
-      <section id="experience" className="section-wrap scroll-mt-24">
+      <section
+        id="experience"
+        className="section-wrap scroll-mt-24"
+      >
         <div className="mx-auto mb-14 max-w-6xl">
           <p className="eyebrow">Career journey</p>
 
           <h2 className="section-title">
-            Professional <span className="gradient-text">Experience</span>
+            Professional{" "}
+            <span className="gradient-text">Experience</span>
           </h2>
 
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-400">
-            Practical experience supporting users, business-critical terminals,
-            and day-to-day IT operations.
+            Practical experience supporting users, business-critical
+            terminals, and day-to-day IT operations.
           </p>
         </div>
 
@@ -344,7 +340,10 @@ export default function Home() {
           CONTACT
       ====================================== */}
 
-      <footer id="contact" className="scroll-mt-24 px-5 pb-10 pt-24 sm:px-8">
+      <footer
+        id="contact"
+        className="scroll-mt-24 px-5 pb-10 pt-24 sm:px-8"
+      >
         <div className="glass mx-auto max-w-6xl rounded-3xl p-7 sm:p-12">
           <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
             <div>
@@ -352,17 +351,21 @@ export default function Home() {
 
               <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                 Building reliable systems,{" "}
-                <span className="gradient-text">one step at a time.</span>
+                <span className="gradient-text">
+                  one step at a time.
+                </span>
               </h2>
 
               <p className="mt-4 max-w-lg text-sm leading-relaxed text-slate-400">
-                I'm open to opportunities in IT support, network operations, and
-                junior system administration.
+                I'm open to opportunities in IT support, network
+                operations, and junior system administration.
               </p>
             </div>
 
             <a
-              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+                profile.email
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="primary-button"
@@ -380,7 +383,7 @@ export default function Home() {
                   key={label}
                   href={href}
                   target={external ? "_blank" : undefined}
-                  rel={external ? "noreferrer" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
                   className="group flex min-w-0 items-center gap-3 rounded-2xl border border-white/[.08] bg-white/[.025] p-4 transition hover:-translate-y-1 hover:border-cyan-300/30 hover:bg-cyan-300/[.06]"
                 >
                   <span className="rounded-xl border border-cyan-300/15 bg-cyan-300/[.07] p-3 text-cyan-200">
@@ -402,13 +405,15 @@ export default function Home() {
                     className="ml-auto shrink-0 text-slate-600 group-hover:text-cyan-200"
                   />
                 </a>
-              ),
+              )
             )}
           </div>
 
           {/* Footer bottom */}
           <div className="mt-10 flex flex-col justify-between gap-4 border-t border-white/10 pt-5 text-xs text-slate-600 sm:flex-row">
-            <span>© {new Date().getFullYear()} Chhun Yanndara</span>
+            <span>
+              © {new Date().getFullYear()} {profile.name}
+            </span>
 
             <span className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />

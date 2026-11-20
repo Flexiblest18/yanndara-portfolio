@@ -11,9 +11,9 @@ export interface ExperienceItem {
 // Edit this array to update the Experience timeline.
 export const experience: ExperienceItem[] = [
   {
-    role: 'IT Helpdesk Intern 4 months',
+    role: 'IT Helpdesk Intern',
     company: 'NagaWorld',
-    date: 'Jun 2026 – Oct 2026',
+    date: '2026 – Present',
     location: 'Phnom Penh, Cambodia',
     type: 'IT Support',
     points: [
@@ -27,7 +27,7 @@ export const experience: ExperienceItem[] = [
   {
     role: 'Bank Executive Trainee – Teller 6 months',
     company: 'Maybank Cambodia',
-    date: '2022 – 2023',
+    date: 'Oct-2022 – March-2023',
     location: 'Serey Sophon Branch, Banteay Meanchey',
     type: 'Banking Operations',
     points: [
@@ -52,5 +52,5 @@ export const profile = {
   telegramLabel: '@yanndarachhun',
   profileImage: '/Dara.jpg',
   location: 'Phnom Penh, Cambodia',
-  cvPath: '/cv.pdf'
+  cvPath: '/Chhun_Yanndara_CV.pdf'
 };
